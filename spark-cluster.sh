@@ -30,4 +30,7 @@ fi
 
 $cmd_master
 
-pdsh -w $SLURM_NODELIST $cmd_slave
+for slave in $(sort -u $SPARK_CONF_DIR/slaves)
+    do
+        ssh $slave "$cmd_slave"
+    done
